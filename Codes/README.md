@@ -35,8 +35,8 @@ mim install mmdet==2.21.0
 ```
 3. Clone this repo
 ```
-git clone https://github.com/kostas1515/GOL.git
-cd GOL
+git clone https://github.com/GuanlinLee/Noisy-LVIS.git
+cd Noisy-LVIS
 ```
 4. Create data directory, download COCO 2017 datasets at https://cocodataset.org/#download (2017 Train images [118K/18GB], 2017 Val images [5K/1GB], 2017 Train/Val annotations [241MB]) and extract the zip files:
 ```
