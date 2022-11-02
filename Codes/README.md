@@ -50,9 +50,9 @@ wget https://s3-us-west-2.amazonaws.com/dl.fbaipublicfiles.com/LVIS/lvis_v1_trai
 wget https://s3-us-west-2.amazonaws.com/dl.fbaipublicfiles.com/LVIS/lvis_v1_val.json.zip
 
 ```
+5. put the noisy annotations in the ./datasets/coco/annotations/
 
-5. modify mmdetection/configs/_base_/datasets/lvis_v1_instance.py and make sure data_root variable points to the above data directory, e.g.,
-data_root = '<user_path>'
+6. modify the data path in config files
 
 <h1>Training</h1>
 To Train on multiple GPUs use <i>tools/dist_train.sh</i> to launch training on multiple GPUs:
