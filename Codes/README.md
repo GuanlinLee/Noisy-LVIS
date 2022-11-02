@@ -50,9 +50,9 @@ wget https://s3-us-west-2.amazonaws.com/dl.fbaipublicfiles.com/LVIS/lvis_v1_trai
 wget https://s3-us-west-2.amazonaws.com/dl.fbaipublicfiles.com/LVIS/lvis_v1_val.json.zip
 
 ```
-5. put the noisy annotations in the ./datasets/coco/annotations/
+5. Put the noisy annotations in the ./datasets/coco/annotations/
 
-6. modify the data path in config files
+6. Modify the data path in config files
 
 <h1>Training</h1>
 To Train on multiple GPUs use <i>tools/dist_train.sh</i> to launch training on multiple GPUs:
