@@ -287,6 +287,6 @@ load_from = None
 resume_from = None
 workflow = [('train', 1)]
 cfg_root = '../lvis/'
-work_dir = 'experiments/eql_normed_mask_r50_4x4_2x_gumbel'
+work_dir = 'experiments/eql_normed_mask_r50_rfs_4x4_2x_gumbel'
 gpu_ids = range(0, 4)
 auto_resume = False
