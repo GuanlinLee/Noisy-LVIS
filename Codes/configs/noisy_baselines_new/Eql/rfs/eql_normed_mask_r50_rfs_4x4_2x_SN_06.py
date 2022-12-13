@@ -56,6 +56,7 @@ model = dict(
                 lambda_=0.0011,
                 version='v1',
                 use_classif='sigmoid'),
+            use_sigmoid=True,
             loss_bbox=dict(type='L1Loss', loss_weight=1.0)),
         mask_roi_extractor=dict(
             type='SingleRoIExtractor',
