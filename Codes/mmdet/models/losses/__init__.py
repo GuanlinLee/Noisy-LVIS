@@ -21,6 +21,8 @@ from .varifocal_loss import VarifocalLoss
 from .gumbel_ce import GumbelCE
 from .droploss import DropLoss
 from .eql import EQL
+from .eql_o import EQLO
+from .eqlv2 import EQLv2
 
 __all__ = [
     'accuracy', 'Accuracy', 'cross_entropy', 'binary_cross_entropy',
@@ -31,5 +33,5 @@ __all__ = [
     'GHMR', 'reduce_loss', 'weight_reduce_loss', 'weighted_loss', 'L1Loss',
     'l1_loss', 'isr_p', 'carl_loss', 'AssociativeEmbeddingLoss',
     'GaussianFocalLoss', 'QualityFocalLoss', 'DistributionFocalLoss',
-    'VarifocalLoss', 'KnowledgeDistillationKLDivLoss', 'SeesawLoss', 'DiceLoss','GumbelCE','DropLoss','EQL'
+    'VarifocalLoss', 'KnowledgeDistillationKLDivLoss', 'SeesawLoss', 'DiceLoss','GumbelCE','DropLoss','EQL','EQLO','EQLv2'
 ]
