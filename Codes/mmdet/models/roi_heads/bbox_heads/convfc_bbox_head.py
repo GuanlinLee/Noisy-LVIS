@@ -5,7 +5,7 @@ from mmcv.cnn import ConvModule
 from mmdet.models.builder import HEADS
 from mmdet.models.utils import build_linear_layer
 from .bbox_head import BBoxHead
-
+from mmcv.cnn import bias_init_with_prob, normal_init
 
 @HEADS.register_module()
 class ConvFCBBoxHead(BBoxHead):
@@ -31,6 +31,7 @@ class ConvFCBBoxHead(BBoxHead):
                  conv_cfg=None,
                  norm_cfg=None,
                  init_cfg=None,
+                 use_sigmoid=False,
                  *args,
                  **kwargs):
         super(ConvFCBBoxHead, self).__init__(
@@ -53,7 +54,7 @@ class ConvFCBBoxHead(BBoxHead):
         self.fc_out_channels = fc_out_channels
         self.conv_cfg = conv_cfg
         self.norm_cfg = norm_cfg
-
+        self.use_sigmoid = use_sigmoid
         # add shared convs and fcs
         self.shared_convs, self.shared_fcs, last_layer_dim = \
             self._add_conv_fc_branch(
@@ -95,7 +96,7 @@ class ConvFCBBoxHead(BBoxHead):
                 self.reg_predictor_cfg,
                 in_features=self.reg_last_dim,
                 out_features=out_dim_reg)
-
+        '''
         if init_cfg is None:
             # when init_cfg is None,
             # It has been set to
@@ -114,7 +115,19 @@ class ConvFCBBoxHead(BBoxHead):
                         dict(name='reg_fcs')
                     ])
             ]
+        '''
+    def init_weights(self):
+        super(ConvFCBBoxHead, self).init_weights()
+        # conv layers are already initialized by ConvModule
+        for module_list in [self.shared_fcs, self.cls_fcs, self.reg_fcs]:
+            for m in module_list.modules():
+                if isinstance(m, nn.Linear):
+                    nn.init.xavier_uniform_(m.weight)
+                    nn.init.constant_(m.bias, 0)
 
+        if self.use_sigmoid:
+            bias_cls = bias_init_with_prob(0.001)
+            normal_init(self.fc_cls, std=0.01, bias=bias_cls)
     def _add_conv_fc_branch(self,
                             num_branch_convs,
                             num_branch_fcs,
